@@ -70,8 +70,8 @@
 
   environment.shells = [pkgs.fish];
 
-  users.users.user-name = {
-    home = "/Users/user-name";
+  users.users.username = {
+    home = "/Users/username";
     shell = "${pkgs.fish}/bin/fish";
   };
   users.users.root = {
