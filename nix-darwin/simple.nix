@@ -48,8 +48,8 @@
     # (Hopefully this requirement will be lifted by 1Password at some point)
     # NOTE we don't install `op` via nix but simply copy the binary
     mkdir -p /usr/local/bin
-    cp ${pkgs._1password}/bin/op /usr/local/bin/op
-    # cp ${pkgs._1password}/bin/op-ssh-sign /usr/local/bin/op-ssh-sign
+    cp ${pkgs._1password-cli}/bin/op /usr/local/bin/op
+    # cp ${pkgs._1password-cli}/bin/op-ssh-sign /usr/local/bin/op-ssh-sign
     cp /Applications/1Password.app/Contents/MacOS/op-ssh-sign /usr/local/bin/op-ssh-sign
 
     # Make `gitx` available in the terminal
@@ -94,19 +94,14 @@
   system.keyboard.remapCapsLockToEscape = true;
 
   fonts = {
-    fontDir.enable = true;
-    fonts = [
-      pkgs.inter
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "FiraMono"
-          "JetBrainsMono"
-          "SourceCodePro"
-        ];
-      })
+    packages = with pkgs; [
+      inter
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.sauce-code-pro
     ];
   };
 
-  system.stateVersion = 4;
+  system.stateVersion = 5;
 }
