@@ -28,6 +28,16 @@ Replace `simple` with the entry point in `darwinConfigurations` or `homeConfigur
 
 When the build is successful, replace `build` with `switch` to make the changes effective. You don't need to run `build` explicitly as `switch` will do that as well. This just helps in testing.
 
+### Enabling flakes
+
+The commands above need flakes to be enabled (it's an experimental feature). While this can be done on a command basis by passing `--extra-experimental-features 'nix-command flakes'` but this needs to be done twice. It's much easier to enable flakes on a system level before running the commands above. Follow [the instructions on this page](https://nixos.wiki/wiki/Flakes#Enable_flakes_permanently_in_NixOS) and pick the situation relevant to you.
+
+Most likely, if you're using this template, you're on macOS and have a fresh install. This means you need to modify the `/etc/nix/nix.conf` file and add this line:
+
+```conf
+experimental-features = nix-command flakes
+```
+
 ## Contribution
 
 Your contribution is very welcome. Primarily, I am looking to improve the template by making it more flexible (more systems) and/or making it more customizable. I am also looking to improve the documentation here, which is almost non-existent right now.
