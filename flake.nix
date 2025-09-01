@@ -85,6 +85,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            # TODO: Set your username
             home-manager.users.username = import ./home-manager/home.nix;
             home-manager.extraSpecialArgs = {inherit inputs outputs;};
           }

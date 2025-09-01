@@ -13,9 +13,6 @@
   imports = [
   ];
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-
   nix = {
     package = pkgs.nix;
 
@@ -62,7 +59,7 @@
     ln -sfv /Users/user-name/.config/VSCode/keybindings.json /Users/user-name/Library/Application\ Support/Code/User/keybindings.json
   '';
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   programs = {
     fish.enable = true;
@@ -70,6 +67,7 @@
 
   environment.shells = [pkgs.fish];
 
+  # TODO: Set your username
   users.users.username = {
     home = "/Users/username";
     shell = "${pkgs.fish}/bin/fish";
@@ -78,6 +76,11 @@
     home = "/var/root";
     shell = "${pkgs.fish}/bin/fish";
   };
+
+  # TODO: Set your username
+  # The user used for options that previously applied to the user running darwin-rebuild.
+  # See https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.primaryUser
+  system.primaryUser = "username";
 
   # can be read via `defaults read NSGlobalDomain`
   system.defaults.NSGlobalDomain = {
@@ -103,5 +106,5 @@
     ];
   };
 
-  system.stateVersion = 5;
+  system.stateVersion = 6;
 }
